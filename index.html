@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Weather APP</title>
+
+    <script src="https://kit.fontawesome.com/a6b0b5c0e4.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHkAAAB5CAMAAAAqJH57AAAAt1BMVEX///8ate3/wQYAseyP1fT/vgD/vAAAs+wAtPIAtPX/+Oj//ff///3/xzsAruv/ugD/1nj/7sv2/P5Zw/Dp9/3/2IP/57T/89j/3ZD/9N3/2on/zln/5a3/6bz/4aH/7MX/0GXb8ftuyfG24/j/yk7/xS7/wyH/yUX/03DM6vqn3fd+z/NHvvBWu9xhu9CDvLatv5fSv23rwUF8u77kwk26wIhDuOHzwi3FwHd2uMTCv36ewKnW2LPgBjeNAAAEB0lEQVRoge2Y2ZaiMBBAJZigouIuiuLWuNv79Kz//12TICjYQooQ23Nmch85kWsVlUpBoaBQKBQKhUKhyM2g26veRdy3sNW9i7mLEUKVe5gb/7zZHNkDrtkcDfvSzQ4hKK6+Yp4Sgi/+X24qVIOd2KWRhfCDGb0yYYtsyWaTBUgmsWtDtIoFWPXoGuxKNhdspl6mLnHZEiS9uZgsIDJOW8LEOHWFGGOCkMUz4wf54kJ1TUgtdYWLyVJ2ZR/VzYmZvqI/uUtL+zIqY9e1bbfX/9KDsjJysEUwg1iWZze/yDtxiL9xT9DCcjkVkJVrt2uucNx7lCP7ymJT8EmYa281ubzWuKI9ur3LtZWGV7u8BsOmrQNPY/ukv0wSswZnR0OsunQtFuulU78b4tH5yjjFy9TTc8YrNeJfEtrgPYLiP6bHYjrYOanX/p/EKxExDRGxn1thQ+zxxKxtB9mtOv6fbgiXvE0wcYKbTQhXTNXr09+kv8zTxCu2G4grS4A4Mhg0h2J1/ZlpenWd1bIPDU5ZR3D4N8sELNcMS24X70HKK0DuWLKCi5Elc9gf8LfyGSzzBTPxnLjKUsaR2dlsd+32/vD49PzyCjWT3OnubNuarhsMvVQua4/PMHneF5zZ3NANLUqprL29Q9TTXPHO63FtKH/6zjc/5HjQW/2a13dr37hmL+ig1ZFLyfK+02rXE7yM8htXfTSbnj+fWg2wuKMlBRyEfeBl/Hg8joPGt4QeIjwxVX9w1EdzM6O5xRVzow5VXcSyjUbpwhNtvpj3rGthbQ/6FGiuizpATNXPKWZHZNbdpFV1LOEpPWUqIG7tIbn2zY+JYgJ9sFG20JCp+keSWWQUg4esacYhySzSPBew8jpSfvn+/v7++mlCE/oiBtpRJz4+6NbfH37+im9ukXepThZviEEPz6fIwY3hbfpMpmRHKZV/5wq5sMuU7BjlsJXjoYC4AOjYiRhBa0n/NJpAS9zrq9nDxsH0V+16DXjahQrsTOnDO+8omyAM+2LUmhXn2fbUZ8pPKJw6j2/uuMZ9x2oVtTodb/OJadR/Tne0g6mAc2ottMSBLxPG/HTLatcCbLEd/JjgqWfnuw4e6PyX/ll6J9o/PqMXozeerIepJZbhYORi7FNjjDOTFzGjAzfPpdRWiFFczFowcUeqmKp1fb8FmYGjZiZ5fQ/Jed6+dd1t8NVZBq8sao37sHMeEsnqIs88u5FZM3hB3ypmTV/c5znTmHe8dN+ktrXYsZXAVv5+BppvVtzcbMs8I6NwKwzyVUTMDDg3NrcIGpDsgtzRIBTzu6fPQs78FxEbG5CYPuv91Y+coujajO8M2cyNui6HugabDE60NtuiDLYZ4lUoFAqFQqH43/gLQCdJ0kdhVnYAAAAASUVORK5CYII=" type="image/x-icon">
+
+    <script src="script.js" defer></script>
+
+
+</head>
+<body>
+    <h1>Weather Upadate</h1>
+    <div class="container">
+        <div class="weather-input">
+            <h3>Enter Location </h3>
+            <input type="text" class="city-input" placeholder=" E.g ;  Agra , Firozabad , Tundla">
+            <button class="search-btn"> Search </button>
+            <div class="separator">
+
+            </div>
+            <button class="location-btn"> Use Current Location </button>
+        </div>
+        <div class="weather-data">
+            <div class="current-weather">
+                <div class="details">
+                    <h2> _________   ( ________ )</h2>
+                    <h4>Temperature : ____</h4>
+                    <h4>Wind Speed : _____ M/s</h4>
+                    <h4>Humidity : ____ %</h4>
+                </div>
+                <!-- <div class="icon">
+                    <img src="https://openweathermap.org/img/wn/10d@4x.png" alt="weather-icon">
+                    <h4>Moderate Rain</h4>
+                </div> -->
+            </div>
+            <div class="days-forecast">
+                <h5>5 - Days Forecast </h5>
+                <ul class="weather-cards">
+                    <li class="card">
+                        <h3> _______ ( _____ )</h2>
+                        <!-- <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather-icon"> -->
+                        <h4>Desc : ____</h4>
+                        <h4>Temperature : _____</h4>
+                        <h4>Wind Speed : _____ M/s</h4>
+                        <h4>Humidity : ____ %</h4>
+                    </li>
+                    <li class="card">
+                        <h3> ______ ( _____ )</h2>
+                        <!-- <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather-icon"> -->
+                        <h4>Desc : ____</h4>
+                        <h4>Temperature : _____</h4>
+                        <h4>Wind Speed : _____ M/s</h4>
+                        <h4>Humidity : ____ %</h4>
+                    </li>
+                    <li class="card">
+                        <h3>______ ( _____ )</h2>
+                        <!-- <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather-icon"> -->
+                        <h4>Desc : ____</h4>
+                        <h4>Temperature : _____</h4>
+                        <h4>Wind Speed : _____ M/s</h4>
+                        <h4>Humidity : ____ %</h4>
+                    </li>
+                    <li class="card">
+                        <h3>______ ( _____ )</h2>
+                        <!-- <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather-icon"> -->
+                        <h4>Desc : ____</h4>
+                        <h4>Temperature : _____</h4>
+                        <h4>Wind Speed : _____ M/s</h4>
+                        <h4>Humidity : ____ %</h4>
+                    </li>
+                    <li class="card">
+                        <h3>______ ( _____ )</h2>
+                        <!-- <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather-icon"> -->
+                        <h4>Desc : ____</h4>
+                        <h4>Temperature : _____</h4>
+                        <h4>Wind Speed : _____ M/s</h4>
+                        <h4>Humidity : ____ %</h4>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer adding  -->
+    
+    
+        <div class="footer  ">
+            <div class="more-info">
+                <p>© Copyright 2023 , www.weatherapp.com All Rights Reseved </p> 
+                <br>
+                
+               <p> For More Info Please Visit : -  
+                <a href="https://mausam.imd.gov.in/" target="_blank">www.mausam.imd.gov.in/</a>
+              </p>
+                
+                
+    
+                
+            </div>
+            <div class="social-media  ">
+                <ul>
+                    <li> <i class="fa-brands fa-youtube" style="color: #e60505;"></i> <a href="https://www.youtube.com/channel/UC_qxTReoq07UVARm87CuyQw/featured?view_as=subscriber" target="_blank"> Youtube </a> </li>
+                    <li> <i class="fa-brands fa-square-x-twitter" style="color: #0a0a0a;"></i> <a href="https://twitter.com/Indiametdept" target="_blank"> Twitter</a> </li>
+                    <li> <i class="fa-brands fa-linkedin" style="color: #2267dd;"></i><a href="#"  > LinkedIn</a> </li>
+                </ul>
+            </div>
+        </div>
+        
+            
+       
+    
+    
+</body>
+</html>

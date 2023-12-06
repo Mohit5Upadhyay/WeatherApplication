@@ -1,0 +1,259 @@
+/* Adding google-fonts  in the CSS file */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300&family=Inconsolata&family=Indie+Flower&family=Nunito&family=Open+Sans&family=Orbitron:wght@500&family=Poppins&family=Righteous&family=Roboto&family=Rowdies&family=Rubik+Mono+One&family=Sassy+Frass&family=Shadows+Into+Light&family=Source+Code+Pro&family=Ubuntu+Mono&family=Yeon+Sung&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+body{
+    background: #e3f2fd;
+}
+h1{
+    font-size: 1.8rem;
+    color: #fff;
+    padding: 18px  0;
+    /* background: #5372f0; */
+    background: #f18d28;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+h1::selection{
+    color: green;
+    background: black;
+}
+.container{
+    display: flex;
+    gap: 35px ;
+    padding: 30px;
+}
+.weather-input{
+    width: 550px;
+}
+.weather-input input{
+    width: 100%;
+    height: 46px;
+    outline: none;
+    padding:  0   17px;
+    margin: 10px 0 20px 0;
+    font-size: 1.07rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.weather-input .separator{
+    height: 1px ;
+    width: 100%;
+    margin: 25px 0px;
+    background: #bbb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.weather-input .separator::before{
+    content: " or ";
+    color: #6c757d;
+    font-size: 1.18rem;
+    padding: 0 15px ;
+    background: #e3f2fd;
+   
+}
+.weather-input  button{
+    width: 100%;
+    padding: 10px 0;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+    color: #fff;
+    border-radius: 4px;
+    /* background: #5372f0; */
+    background: #f18d28;
+
+}
+/* changes on hover */
+.weather-input .search-btn:hover{
+    /* background: #5163ad; */
+    background: #c98037;
+
+}
+.weather-input .location-btn:hover{
+    background: #515960;
+    /* background: #776B5D; */
+
+}
+.weather-input .location-btn{
+    /* background: #6c757d; */
+    background: #776B5D;
+
+}
+.weather-data{
+    width: 100%;
+
+}
+/* left side of the weather APP  Update Dashboard  */
+.current-weather:hover{
+    /* background: #5163ad; */
+    background: #c98037;
+
+}
+.current-weather{
+    color: #fff;
+    padding: 20px 70px 20px 20px ;
+    border-radius: 6px;
+    /* background: #5372f0; */
+    background: #f18d28;
+    display: flex;
+    justify-content: space-between;
+}
+.current-weather h2{
+    font-size: 1.7rem;
+
+}
+.weather-data h4{
+    margin-top: 12px;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+.current-weather .icon {
+    text-align: center;
+}
+.current-weather .icon img {
+    max-width: 120px ;
+    margin-top: -15px;
+
+}
+.current-weather .icon h4{
+    margin-top: -10px ;
+    text-transform: capitalize;
+}
+.days-forecast h5{
+    font-size: 1.5rem;
+    margin: 20px 0;
+}
+.weather-cards{
+    display: flex;
+    gap: 20px ;
+
+}
+.weather-cards .card{
+    /* background: #6c757d; */
+    background: #776B5D;
+
+    list-style: none;
+    padding: 18px 16px ;
+    color: #fff;
+    border-radius: 5px;
+    width: calc(100% / 5);
+}
+.weather-cards .card:hover{
+    /* background: #776B5D; */
+    background: #515960;
+}
+.weather-cards .card img {
+    max-width: 70px ;
+    margin: 5px  0 -12px  0;
+}
+
+
+/* let's make the static webpage to be responsive ---by using the Media Queries  */
+
+@media (max-width : 1400px )  {
+    .weather-data .current-weather{
+        padding: 20px;
+    }
+    .weather-cards{
+        flex-wrap: wrap;
+
+    }
+    .weather-cards .card{
+        width: calc(100% /4 - 15px);
+        
+    }
+}
+
+@media (max-width : 1200px )  {
+   
+    .weather-cards .card{
+        width: calc(100% /3 - 15px);
+        
+    }
+}
+
+@media (max-width : 950px )  {
+   
+    .weather-input {
+        width: 450px ;
+        
+    }
+    .weather-cards .card{
+        width: calc(100% /2 - 10px);
+        
+    }
+}
+
+@media (max-width : 750px )  {
+   
+    .container{
+        flex-wrap: wrap;
+        padding: 15px;
+    }
+    .weather-input{
+        width: 100%;
+    }
+}
+
+/* footer css */
+
+.footer{
+    /* font-size: 1.8rem; */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 100px;
+    color: #fff;
+    padding: 26px  4px;
+    /* background: #5372f0; */
+    background: #676565;
+    
+}
+.more-info >p>a {
+    text-decoration: none;
+    color: #fff;
+    font-size: small;
+}
+.social-media ul{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    
+}
+.social-media ul>li>a {
+    text-decoration: none;
+    color: #fff;
+}
+.act{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 100px;
+    color: #fff;
+    padding: 10px  5px;
+    /* background: #5372f0; */
+    background: #676565;
+}
+
+@media (max-width : 865px )  {
+   
+    .footer{
+        /* flex-wrap: wrap; */
+        flex-direction: column-reverse;
+        padding: 20px;
+        gap: 20px;
+        width: 100%;
+    }
+}
