@@ -28,7 +28,7 @@ h1 {
 
 h1::selection {
     color: green;
-    background: black;
+    background: rgb(251, 251, 251);
 }
 
 .container {
@@ -80,15 +80,23 @@ h1::selection {
     color: #fff;
     border-radius: 4px;
     background: #007bff; /* Blue background */
+    transition: box-shadow 0.3s ease; /* Smooth transition for glow effect */
 }
 
-/* changes on hover */
+/* Glow effect on hover */
+.weather-input button:hover {
+    background: #0056b3; /* Darker blue on hover */
+    box-shadow: 0 0 10px #0056b3, 0 0 20px #0056b3; /* Blue glow */
+}
+
 .weather-input .search-btn:hover {
     background: #0056b3; /* Darker blue on hover */
+    box-shadow: 0 0 10px #0056b3, 0 0 20px #0056b3; /* Blue glow */
 }
 
 .weather-input .location-btn:hover {
     background: #4a90e2; /* Blue on hover */
+    box-shadow: 0 0 10px #4a90e2, 0 0 20px #4a90e2; /* Blue glow */
 }
 
 .weather-input .location-btn {
@@ -102,6 +110,7 @@ h1::selection {
 /* left side of the weather APP Update Dashboard */
 .current-weather:hover {
     background: #0056b3; /* Darker blue on hover */
+    box-shadow: 0 0 10px #0056b3, 0 0 20px #0056b3; /* Blue glow */
 }
 
 .current-weather {
@@ -154,10 +163,12 @@ h1::selection {
     color: #fff;
     border-radius: 5px;
     width: calc(100% / 5);
+    transition: box-shadow 0.3s ease; /* Smooth transition for glow effect */
 }
 
 .weather-cards .card:hover {
     background: #0056b3; /* Darker blue on hover */
+    box-shadow: 0 0 10px #0056b3, 0 0 20px #0056b3; /* Blue glow */
 }
 
 .weather-cards .card img {
@@ -240,7 +251,7 @@ h1::selection {
     gap: 100px;
     color: #fff;
     padding: 10px 5px;
-    background: #343a40; /* Darker gray background */
+    background: #acacac; /* Darker gray background */
 }
 
 @media (max-width: 865px) {
