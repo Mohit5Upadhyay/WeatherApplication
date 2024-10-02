@@ -137,3 +137,31 @@ searchButton.addEventListener("click", getCityCoordinates);
 locationButton.addEventListener("click", getUserCoordinates);
 cityInput.addEventListener("keyup", e => e.key === "Enter" &&getCityCoordinates());
 
+
+const darkModeToggle = document.querySelector('.dark-mode-toggle');
+const body = document.body;
+const icon = darkModeToggle.querySelector('i');
+
+// Initialize dark mode based on saved preference
+if (localStorage.getItem('darkMode') === 'enabled') {
+    body.classList.add('dark-mode');
+    icon.classList.remove('fa-sun');
+    icon.classList.add('fa-moon');
+}
+
+// Toggle dark mode on button click
+darkModeToggle.addEventListener('click', function () {
+    body.classList.toggle('dark-mode');
+
+    // Toggle the icons between sun and moon
+    if (body.classList.contains('dark-mode')) {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+        localStorage.setItem('darkMode', 'enabled'); // Save preference to localStorage
+    } else {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+        localStorage.setItem('darkMode', 'disabled'); // Save preference to localStorage
+    }
+});
+
