@@ -157,6 +157,14 @@ h1::selection{
     margin: 5px  0 -12px  0;
 }
 
+/* Error Message */
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+
 
 /* let's make the static webpage to be responsive ---by using the Media Queries  */
 
