@@ -11,16 +11,56 @@
 body{
     background: #e3f2fd;
 }
-h1{
+/* H1 styling */
+h1 {
     font-size: 1.8rem;
     color: #fff;
-    padding: 18px  0;
-    /* background: #5372f0; */
+    padding: 18px 0;
     background: #f18d28;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
+
+/* Dark Mode Toggle Button styling */
+.dark-mode-toggle {
+    position: absolute;
+    left: 20px; /* Push the button to the far left */
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dark-mode-toggle:focus {
+    outline: none;
+}
+
+/* Icon styling */
+.dark-mode-toggle i {
+    transition: color 0.3s, transform 0.3s;
+}
+
+.dark-mode-toggle:hover i {
+    color: #ddd;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #333;
+    color: #fff;
+}
+
+body.dark-mode h1 {
+    background-color: #444;
+}
+
+
 h1::selection{
     color: green;
     background: black;
@@ -308,4 +348,50 @@ height: 50%;
         gap: 20px;
         width: 100%;
     }
+}
+/* Light Mode (default) */
+body {
+    background-color: white;
+    color: black;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+h1 {
+    font-size: 1.8rem;
+    color: #fff;
+    padding: 18px 0;
+    background-color: #f18d28; /* Orange background in light mode */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Dark Mode */
+body.dark-mode {
+    background-color: #1e1e1e;
+    color: #fff;
+}
+
+body.dark-mode h1  {
+    background-color: #34495e; /* Dark violet background in dark mode */
+}
+
+
+/* Dark Mode Toggle Button styling */
+.dark-mode-toggle {
+    position: absolute;
+    left: 20px; /* Push the button to the far left */
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dark-mode-toggle i {
+    transition: color 0.3s, transform 0.3s;
 }
