@@ -32,7 +32,32 @@ h1::selection{
 }
 .weather-input{
     width: 550px;
+    
+    display: flex;
+    flex-direction: column;
 }
+.search-sec{
+    
+    height: 45%;
+
+
+}
+
+
+.map-sec{
+background-color: #5fdec9;
+height: 50%;
+}
+
+
+#leaflet-map {
+    width: 390px    !important;
+    height: 300px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    position: absolute !important;
+}
+
 .weather-input input{
     width: 100%;
     height: 46px;
@@ -106,11 +131,38 @@ h1::selection{
     /* background: #5372f0; */
     background: #f18d28;
     display: flex;
-    justify-content: space-between;
+ flex-direction: row;
+ column-gap: 50px;
+
 }
 .current-weather h2{
-    font-size: 1.7rem;
+    font-size: 1.3rem;
 
+
+}
+ 
+
+.graph-sec img {
+    width: 300px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    max-width:100%; /* Ensure it doesn’t exceed its container */
+    max-height: 250px; /* Adjust the height as needed */
+    object-fit: contain; /* Maintain the aspect ratio */
+}
+
+ 
+#line-grap {
+    height: 150px;
+    width: 600px;
+    border: 0.1px solid black;
+    border-radius: 8px;
+}
+ 
+ 
+.details {
+     
+    width: 35%; /* Adjust width as needed */
+    height: 100%; /* Ensure it has a defined height */
 }
 .weather-data h4{
     margin-top: 12px;
