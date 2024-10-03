@@ -101,33 +101,25 @@ const getCityCoordinates = () =>{
     alert("An Error Occured while Fetching the Coordinates!")
    });
 }
-
-const getUserCoordinates = ()=>{
+const getUserCoordinates = () => {
     navigator.geolocation.getCurrentPosition(
-        position =>{
-            //console.log(position);
-            const { latitude, longitude} =  position.coords;
+        position => {
+            const { latitude, longitude } = position.coords;
 
-            //Get city name for the coordinates using reverse geocoding API .
-            const REVERSE_GEOCODING_URL = `http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${API_KEY}` ;
+            // Use HTTPS for the reverse geocoding API
+            const REVERSE_GEOCODING_URL = `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${API_KEY}`;
+            
             fetch(REVERSE_GEOCODING_URL).then(res => res.json()).then(data => {
-
-                // console.log(data)
-                //  if(!data.length) return alert(`No City found for ${cityName}`);
-                    const { name } = data[0];
-                    getWeatherDetails(name,latitude ,longitude);
-
-                // console.log(data);
-             
-                }).catch(() => {
-                 alert("An Error Occured while Fetching the City!")
-                });
+                const { name } = data[0];
+                getWeatherDetails(name, latitude, longitude);
+            }).catch(() => {
+                alert("An Error Occurred while Fetching the City!");
+            });
         },
-        error =>{
-            //console.log(error);
+        error => {
             if (error.code === error.PERMISSION_DENIED) {
-                alert("Geolocation request denied . Please reset loacation permission to grant access again...")  
-            } 
+                alert("Geolocation request denied. Please reset location permission to grant access again...");
+            }
         }
     );
 }
