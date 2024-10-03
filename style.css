@@ -1,4 +1,3 @@
-/* Adding google-fonts  in the CSS file */
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300&family=Inconsolata&family=Indie+Flower&family=Nunito&family=Open+Sans&family=Orbitron:wght@500&family=Poppins&family=Righteous&family=Roboto&family=Rowdies&family=Rubik+Mono+One&family=Sassy+Frass&family=Shadows+Into+Light&family=Source+Code+Pro&family=Ubuntu+Mono&family=Yeon+Sung&display=swap');
 
 * {
@@ -7,6 +6,7 @@
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
 }
+
 body {
     margin: 0;
     height: 100vh; /* Full height of the viewport */
@@ -14,21 +14,65 @@ body {
     background-size: cover; /* Cover the entire area */
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Prevent the image from repeating */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Light Mode (default) */
+body {
+    background-color: white;
+    color: black;
+}
+
+/* Dark Mode */
+body.dark-mode {
+    background-color: #1e1e1e;
+    color: #fff;
 }
 
 h1 {
     font-size: 1.8rem;
     color: #fff;
     padding: 18px 0;
-    background: #4a90e2; /* Blue background */
+    background-color: #f18d28; /* Orange background in light mode */
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+}
+
+body.dark-mode h1 {
+    background-color: #34495e; /* Dark violet background in dark mode */
 }
 
 h1::selection {
     color: green;
     background: rgb(251, 251, 251);
+}
+
+/* Dark Mode Toggle Button styling */
+.dark-mode-toggle {
+    position: absolute;
+    left: 20px; /* Push the button to the far left */
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dark-mode-toggle i {
+    transition: color 0.3s, transform 0.3s;
+}
+
+.dark-mode-toggle:hover i {
+    color: #ddd;
+}
+
+.dark-mode-toggle:focus {
+    outline: none;
 }
 
 .container {
@@ -107,7 +151,6 @@ h1::selection {
     width: 100%;
 }
 
-/* left side of the weather APP Update Dashboard */
 .current-weather:hover {
     background: #0056b3; /* Darker blue on hover */
     box-shadow: 0 0 10px #0056b3, 0 0 20px #0056b3; /* Blue glow */
