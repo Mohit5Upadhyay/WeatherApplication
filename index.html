@@ -25,6 +25,9 @@
 <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
 <script src="https://api.windy.com/assets/map-forecast/libBoot.js"></script>
  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- Correctly load Google Maps API with your API Key -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAp1V9RV5P5tim26VBxAszRLzuMCClsNzM&libraries=places"></script>
 
 <style>
     #windy {
@@ -41,14 +44,25 @@
     <h1>Weather Update
         <button class="dark-mode-toggle"><i class="fas fa-sun"></i></button>
     </h1>
-    
-    
-
     <div class="container">
         <div class="weather-input">
 <div class="search-sec">
-            <h3>Enter Location </h3>
-            <input type="text" class="city-input" placeholder=" E.g ;  Agra , Firozabad , Tundla">
+    <h3>Enter Location </h3>
+          <!-- Changed id from class to ensure Google Places Autocomplete works -->
+          <input type="text" id="location" class="city-input" placeholder=" E.g ;  Agra , Firozabad , Tundla">
+
+          <!-- Highlighted change: Corrected script to use Places Autocomplete -->
+          <script type="text/javascript">
+              $(document).ready(function(){
+                  var autocomplete;
+                  var input = document.getElementById('location');
+                  // Initialize the autocomplete functionality
+                  autocomplete = new google.maps.places.Autocomplete(input, {
+                      types: ['geocode']  // Restrict the search to geographical queries
+                    })
+                })
+            </script>
+            </script>
             <button class="search-btn"> Search </button>
             <div class="separator">
 
