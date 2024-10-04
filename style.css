@@ -171,23 +171,22 @@ height: 50%;
     /* background: #5372f0; */
     background: #f18d28;
     display: flex;
- flex-direction: row;
- column-gap: 50px;
+ justify-content:space-between ;
+ gap: 50px;
 
 }
 .current-weather h2{
     font-size: 1.3rem;
 
-
 }
  
 
 .graph-sec img {
-    width: 300px; /* Adjust the width as needed */
+    width: 100px; /* Adjust the width as needed */
     height: auto; /* Maintain aspect ratio */
     max-width:100%; /* Ensure it doesn’t exceed its container */
     max-height: 250px; /* Adjust the height as needed */
-    object-fit: contain; /* Maintain the aspect ratio */
+
 }
 
  

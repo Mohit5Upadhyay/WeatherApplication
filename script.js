@@ -8,7 +8,7 @@ const currentWeatherDiv = document.querySelector(".current-weather");
 const API_KEY = "eb25bb98e70091ae7787a643b17b1686";  // OpenWeatherMap API key
 
 // Function to create weather card HTML
-const createWeatherCard = (cityName, weatherItem, index) => {
+const createWeatherCard = (cityName, weatherItem, index,aqiText) => {
     const tempCelsius = (weatherItem.main.temp - 273.15).toFixed(2);
     const weatherIcon = `https://openweathermap.org/img/wn/${weatherItem.weather[0].icon}@2x.png`;
     
@@ -19,6 +19,7 @@ const createWeatherCard = (cityName, weatherItem, index) => {
                 <h4>${weatherItem.dt_txt.split(" ")[0]}</h4> 
                 <h4>Wind Speed: ${weatherItem.wind.speed} M/s</h4>
                 <h4>Humidity: ${weatherItem.main.humidity} %</h4>
+                <h4>Air Quality: ${aqiText}</h4>
             </div>
             <img src="graph.png" alt="line-graph" id="line-grap">
             <div class="icon">
@@ -35,8 +36,34 @@ const createWeatherCard = (cityName, weatherItem, index) => {
                 <h4>Temperature: ${tempCelsius}°C</h4>
                 <h4>Wind Speed: ${weatherItem.wind.speed} M/s</h4>
                 <h4>Humidity: ${weatherItem.main.humidity} %</h4>
+                <h4>Air Quality: ${aqiText}</h4>
+                
             </li>`;
     }
+};
+
+// Function to get air quality index
+const getAirQuality = (lat, lon) => {
+    const AQI_API_URL = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
+    
+    return fetch(AQI_API_URL)
+        .then(res => {
+            if (!res.ok) {
+                throw new Error(`HTTP error! Status: ${res.status} - ${res.statusText}`);
+            }
+            return res.json();
+        })
+        .then(data => {
+            const aqi = data.list[0].main.aqi; // Get AQI value
+            const aqiDescription = ["Good", "Fair", "Moderate", "Poor", "Very Poor"];
+            const aqiText = aqiDescription[aqi - 1] || "Unknown";
+            return aqiText;
+           // currentWeatherDiv.insertAdjacentHTML("beforeend", `<h4>Air Quality: ${aqiText}</h4>`);
+        })
+        .catch(error => {
+            console.error("Error fetching air quality data:", error);
+            return "Unavailable";
+        });
 };
 
 // Function to get weather details based on city coordinates
@@ -70,25 +97,29 @@ const getWeatherDetails = (cityName, lat, lon) => {
             weatherCardsDiv.innerHTML = "";
 
             // Create weather cards
+            return getAirQuality(lat, lon)
+            .then(aqiText => {
             fiveDaysForecast.forEach((weatherItem, index) => {
                 if (index === 0) {
-                    currentWeatherDiv.insertAdjacentHTML("beforeend", createWeatherCard(cityName, weatherItem, index));
+                    currentWeatherDiv.insertAdjacentHTML("beforeend", createWeatherCard(cityName, weatherItem, index,aqiText));
                 } else {
-                    weatherCardsDiv.insertAdjacentHTML("beforeend", createWeatherCard(cityName, weatherItem, index));
+                    weatherCardsDiv.insertAdjacentHTML("beforeend", createWeatherCard(cityName, weatherItem, index,aqiText));
                 }
             });
 
             // Log lat and lon before updating the map
             console.log(`Updating map to: Latitude: ${lat}, Longitude: ${lon}`);
             updateMap(lat, lon);  // Ensure this is called after the weather cards are generated
-        })
+            // Call the air quality function
+           // Fetch AQI data
+        });
+    })
         .catch(error => {
             console.error("Error fetching weather forecast:", error);
             alert("An error occurred while fetching the weather forecast: " + error.message);
         });
 };
 
-// Function to get city coordinates
 // Function to get city coordinates
 const getCityCoordinates = () => {
     const cityName = cityInput.value.trim();
@@ -179,7 +210,7 @@ const updateMap = (lat, lon) => {
 
 
 
-
+// Dark mode functionality
 const darkModeToggle = document.querySelector('.dark-mode-toggle');
 const body = document.body;
 const icon = darkModeToggle.querySelector('i');
