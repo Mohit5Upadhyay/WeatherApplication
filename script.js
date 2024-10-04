@@ -1,4 +1,43 @@
 // JavaScript file for the Weather Application 
+const translations = {
+   en: {
+      weatherTitle: "Weather Forecast",
+      greeting: "Hello! Check your weather today.",
+      // Add more translations here
+   },
+   hi: {
+      weatherTitle: "मौसम का पूर्वानुमान",
+      greeting: "नमस्ते! आज के मौसम की जाँच करें।",
+      // Add more translations here
+   },
+   kn: {
+      weatherTitle: "ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ",
+      greeting: "ಹಲೋ! ಇಂದು ನಿಮ್ಮ ಹವಾಮಾನವನ್ನು ಪರಿಶೀಲಿಸಿ.",
+      // Add more translations here
+   },
+   te: {
+      weatherTitle: "వాతావరణ అంచనా",
+      greeting: "హలో! ఈ రోజు మీ వాతావరణాన్ని తనిఖీ చేయండి.",
+      // Add more translations here
+   }
+};
+function applyTranslations(lang) {
+   const elements = document.querySelectorAll("[data-translate]");
+   elements.forEach(el => {
+      const key = el.getAttribute("data-translate");
+      el.innerText = translations[lang][key];
+   });
+}
+
+// Add event listener for language change
+document.getElementById("language-select").addEventListener("change", function() {
+   const selectedLang = this.value;
+   applyTranslations(selectedLang);
+});
+document.addEventListener("DOMContentLoaded", () => {
+   applyTranslations('en');
+});
+
 const cityInput = document.querySelector(".city-input");
 const searchButton = document.querySelector(".search-btn");
 const locationButton = document.querySelector(".location-btn");
