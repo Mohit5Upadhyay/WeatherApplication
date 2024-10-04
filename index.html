@@ -33,13 +33,6 @@
         width: 100%;
         height: 350px;
     }
-
- 
-
-
-
-   
-
         .chatbot-container {
             position: fixed;
             bottom: 20px; /* Adjust as needed */
@@ -91,6 +84,15 @@
     <div class="container">
         <div class="weather-input">
 <div class="search-sec">
+    <select id="language-select">
+   <option value="en">English</option>
+   <option value="hi">Hindi</option>
+   <option value="kn">Kannada</option>
+   <option value="te">Telugu</option>
+</select>
+<h1 data-translate="weatherTitle">Weather Forecast</h1>
+<p data-translate="greeting">Hello! Check your weather today.</p>
+
     <h3>Enter Location </h3>
           <!-- Changed id from class to ensure Google Places Autocomplete works -->
           <input type="text" id="location" class="city-input" placeholder=" E.g ;  Agra , Firozabad , Tundla">
