@@ -189,15 +189,11 @@ height: 50%;
     border-radius: 6px;
     background: #007bff; /* Blue background */
     display: flex;
- flex-direction: row;
- column-gap: 50px;
+ justify-content:space-between ;
+ gap: 50px;
 
 }
 
-
-.current-weather h2 {
-    font-size: 1.7rem;
-}
 
 
 .weather-data h4 {
@@ -205,11 +201,11 @@ height: 50%;
  
 
 .graph-sec img {
-    width: 300px; /* Adjust the width as needed */
+    width: 100px; /* Adjust the width as needed */
     height: auto; /* Maintain aspect ratio */
     max-width:100%; /* Ensure it doesn’t exceed its container */
     max-height: 250px; /* Adjust the height as needed */
-    object-fit: contain; /* Maintain the aspect ratio */
+
 }
 
  
