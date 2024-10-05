@@ -1,26 +1,52 @@
-/* Adding google-fonts  in the CSS file */
-
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300&family=Inconsolata&family=Indie+Flower&family=Nunito&family=Open+Sans&family=Orbitron:wght@500&family=Poppins&family=Righteous&family=Roboto&family=Rowdies&family=Rubik+Mono+One&family=Sassy+Frass&family=Shadows+Into+Light&family=Source+Code+Pro&family=Ubuntu+Mono&family=Yeon+Sung&display=swap');
 
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
 }
-body{
-    background: #e3f2fd;
+
+body {
+    margin: 0;
+    height: 100vh; /* Full height of the viewport */
+    background-image: url('images/img.jpeg');
+    background-size: cover; /* Cover the entire area */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    transition: background-color 0.3s, color 0.3s;
 }
-/* H1 styling */
+
+/* Light Mode (default) */
+body {
+    background-color: white;
+    color: black;
+}
+
+/* Dark Mode */
+body.dark-mode {
+    background-color: #1e1e1e;
+    color: #fff;
+}
+
 h1 {
     font-size: 1.8rem;
     color: #fff;
     padding: 18px 0;
-    background: #f18d28;
+    background-color: #f18d28; /* Orange background in light mode */
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
+}
+
+body.dark-mode h1 {
+    background-color: #34495e; /* Dark violet background in dark mode */
+}
+
+h1::selection {
+    color: green;
+    background: rgb(251, 251, 251);
 }
 
 /* Dark Mode Toggle Button styling */
@@ -37,11 +63,6 @@ h1 {
     justify-content: center;
 }
 
-.dark-mode-toggle:focus {
-    outline: none;
-}
-
-/* Icon styling */
 .dark-mode-toggle i {
     transition: color 0.3s, transform 0.3s;
 }
@@ -50,27 +71,17 @@ h1 {
     color: #ddd;
 }
 
-/* Dark mode styles */
-body.dark-mode {
-    background-color: #333;
-    color: #fff;
+.dark-mode-toggle:focus {
+    outline: none;
 }
 
-body.dark-mode h1 {
-    background-color: #444;
-}
-
-
-h1::selection{
-    color: green;
-    background: black;
-}
-.container{
+.container {
     display: flex;
-    gap: 35px ;
+    gap: 35px;
     padding: 30px;
 }
-.weather-input{
+
+.weather-input {
     width: 550px;
     
     display: flex;
@@ -98,18 +109,22 @@ height: 50%;
     position: absolute !important;
 }
 
+
+.weather-input input {
+
 .weather-input input{
     width: 100%;
     height: 46px;
     outline: none;
-    padding:  0   17px;
+    padding: 0 17px;
     margin: 10px 0 20px 0;
     font-size: 1.07rem;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
-.weather-input .separator{
-    height: 1px ;
+
+.weather-input .separator {
+    height: 1px;
     width: 100%;
     margin: 25px 0px;
     background: #bbb;
@@ -117,15 +132,16 @@ height: 50%;
     align-items: center;
     justify-content: center;
 }
-.weather-input .separator::before{
+
+.weather-input .separator::before {
     content: " or ";
     color: #6c757d;
     font-size: 1.18rem;
-    padding: 0 15px ;
+    padding: 0 15px;
     background: #e3f2fd;
-   
 }
-.weather-input  button{
+
+.weather-input button {
     width: 100%;
     padding: 10px 0;
     cursor: pointer;
@@ -134,51 +150,54 @@ height: 50%;
     font-size: 1rem;
     color: #fff;
     border-radius: 4px;
-    /* background: #5372f0; */
-    background: #f18d28;
-
+    background: #007bff; /* Blue background */
+    transition: box-shadow 0.3s ease; /* Smooth transition for glow effect */
 }
-/* changes on hover */
-.weather-input .search-btn:hover{
-    /* background: #5163ad; */
-    background: #c98037;
 
+/* Glow effect on hover */
+.weather-input button:hover {
+    background: #0056b3; /* Darker blue on hover */
+    box-shadow: 0 0 10px #0056b3, 0 0 20px #0056b3; /* Blue glow */
 }
-.weather-input .location-btn:hover{
-    background: #515960;
-    /* background: #776B5D; */
 
+.weather-input .search-btn:hover {
+    background: #0056b3; /* Darker blue on hover */
+    box-shadow: 0 0 10px #0056b3, 0 0 20px #0056b3; /* Blue glow */
 }
-.weather-input .location-btn{
-    /* background: #6c757d; */
-    background: #776B5D;
 
+.weather-input .location-btn:hover {
+    background: #4a90e2; /* Blue on hover */
+    box-shadow: 0 0 10px #4a90e2, 0 0 20px #4a90e2; /* Blue glow */
 }
-.weather-data{
+
+.weather-input .location-btn {
+    background: #007bff; /* Blue background */
+}
+
+.weather-data {
     width: 100%;
-
 }
-/* left side of the weather APP  Update Dashboard  */
-.current-weather:hover{
-    /* background: #5163ad; */
-    background: #c98037;
 
+.current-weather:hover {
+    background: #0056b3; /* Darker blue on hover */
+    box-shadow: 0 0 10px #0056b3, 0 0 20px #0056b3; /* Blue glow */
 }
-.current-weather{
+
+.current-weather {
     color: #fff;
-    padding: 20px 70px 20px 20px ;
+    padding: 20px 70px 20px 20px;
     border-radius: 6px;
-    /* background: #5372f0; */
-    background: #f18d28;
+    background: #007bff; /* Blue background */
     display: flex;
  justify-content:space-between ;
  gap: 50px;
 
 }
-.current-weather h2{
-    font-size: 1.3rem;
 
-}
+
+
+.weather-data h4 {
+
  
 
 .graph-sec img {
@@ -202,195 +221,138 @@ height: 50%;
      
     width: 35%; /* Adjust width as needed */
     height: 100%; /* Ensure it has a defined height */
-}
-.weather-data h4{
     margin-top: 12px;
     font-size: 1.1rem;
     font-weight: 500;
 }
+
 .current-weather .icon {
     text-align: center;
 }
-.current-weather .icon img {
-    max-width: 120px ;
-    margin-top: -15px;
 
+.current-weather .icon img {
+    max-width: 120px;
+    margin-top: -15px;
 }
-.current-weather .icon h4{
-    margin-top: -10px ;
+
+.current-weather .icon h4 {
+    margin-top: -10px;
     text-transform: capitalize;
 }
-.days-forecast h5{
+
+.days-forecast h5 {
     font-size: 1.5rem;
     margin: 20px 0;
 }
-.weather-cards{
+
+.weather-cards {
     display: flex;
-    gap: 20px ;
-
+    gap: 20px;
 }
-.weather-cards .card{
-    /* background: #6c757d; */
-    background: #776B5D;
 
+.weather-cards .card {
+    background: #4a90e2; /* Blue background */
     list-style: none;
-    padding: 18px 16px ;
+    padding: 18px 16px;
     color: #fff;
     border-radius: 5px;
     width: calc(100% / 5);
+    transition: box-shadow 0.3s ease; /* Smooth transition for glow effect */
 }
-.weather-cards .card:hover{
-    /* background: #776B5D; */
-    background: #515960;
+
+.weather-cards .card:hover {
+    background: #0056b3; /* Darker blue on hover */
+    box-shadow: 0 0 10px #0056b3, 0 0 20px #0056b3; /* Blue glow */
 }
+
 .weather-cards .card img {
-    max-width: 70px ;
-    margin: 5px  0 -12px  0;
+    max-width: 70px;
+    margin: 5px 0 -12px 0;
 }
 
-
-/* let's make the static webpage to be responsive ---by using the Media Queries  */
-
-@media (max-width : 1400px )  {
-    .weather-data .current-weather{
+/* Media Queries for responsiveness */
+@media (max-width: 1400px) {
+    .weather-data .current-weather {
         padding: 20px;
     }
-    .weather-cards{
+    .weather-cards {
         flex-wrap: wrap;
-
     }
-    .weather-cards .card{
-        width: calc(100% /4 - 15px);
-        
+    .weather-cards .card {
+        width: calc(100% / 4 - 15px);
     }
 }
 
-@media (max-width : 1200px )  {
-   
-    .weather-cards .card{
-        width: calc(100% /3 - 15px);
-        
+@media (max-width: 1200px) {
+    .weather-cards .card {
+        width: calc(100% / 3 - 15px);
     }
 }
 
-@media (max-width : 950px )  {
-   
+@media (max-width: 950px) {
     .weather-input {
-        width: 450px ;
-        
+        width: 450px;
     }
-    .weather-cards .card{
-        width: calc(100% /2 - 10px);
-        
+    .weather-cards .card {
+        width: calc(100% / 2 - 10px);
     }
 }
 
-@media (max-width : 750px )  {
-   
-    .container{
+@media (max-width: 750px) {
+    .container {
         flex-wrap: wrap;
         padding: 15px;
     }
-    .weather-input{
+    .weather-input {
         width: 100%;
     }
 }
 
-/* footer css */
-
-.footer{
-    /* font-size: 1.8rem; */
+/* Footer CSS */
+.footer {
     display: flex;
     align-items: center;
     justify-content: space-around;
     gap: 100px;
     color: #fff;
-    padding: 26px  4px;
-    /* background: #5372f0; */
-    background: #676565;
-    
+    padding: 26px 4px;
+    background: #343a40; /* Darker gray background */
 }
-.more-info >p>a {
+
+.more-info > p > a {
     text-decoration: none;
     color: #fff;
     font-size: small;
 }
-.social-media ul{
+
+.social-media ul {
     list-style: none;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
-    
 }
-.social-media ul>li>a {
+
+.social-media ul > li > a {
     text-decoration: none;
     color: #fff;
 }
-.act{
+
+.act {
     display: flex;
     align-items: center;
     justify-content: space-around;
     gap: 100px;
     color: #fff;
-    padding: 10px  5px;
-    /* background: #5372f0; */
-    background: #676565;
+    padding: 10px 5px;
+    background: #acacac; /* Darker gray background */
 }
 
-@media (max-width : 865px )  {
-   
-    .footer{
-        /* flex-wrap: wrap; */
+@media (max-width: 865px) {
+    .footer {
         flex-direction: column-reverse;
         padding: 20px;
         gap: 20px;
         width: 100%;
     }
-}
-/* Light Mode (default) */
-body {
-    background-color: white;
-    color: black;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-h1 {
-    font-size: 1.8rem;
-    color: #fff;
-    padding: 18px 0;
-    background-color: #f18d28; /* Orange background in light mode */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-
-/* Dark Mode */
-body.dark-mode {
-    background-color: #1e1e1e;
-    color: #fff;
-}
-
-body.dark-mode h1  {
-    background-color: #34495e; /* Dark violet background in dark mode */
-}
-
-
-/* Dark Mode Toggle Button styling */
-.dark-mode-toggle {
-    position: absolute;
-    left: 20px; /* Push the button to the far left */
-    background: none;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    font-size: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.dark-mode-toggle i {
-    transition: color 0.3s, transform 0.3s;
 }
