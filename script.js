@@ -150,11 +150,31 @@ const getCityCoordinates = () => {
 };
 
 
+   }).catch(() => {
+    alert("An Error Occured while Fetching the Coordinates!")
+   });
+}
 // Function to get user's current coordinates
+
 const getUserCoordinates = () => {
     navigator.geolocation.getCurrentPosition(
         position => {
             const { latitude, longitude } = position.coords;
+
+            // Use HTTPS for the reverse geocoding API
+            const REVERSE_GEOCODING_URL = `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${API_KEY}`;
+            
+            fetch(REVERSE_GEOCODING_URL).then(res => res.json()).then(data => {
+                const { name } = data[0];
+                getWeatherDetails(name, latitude, longitude);
+            }).catch(() => {
+                alert("An Error Occurred while Fetching the City!");
+            });
+        },
+        error => {
+            if (error.code === error.PERMISSION_DENIED) {
+                alert("Geolocation request denied. Please reset location permission to grant access again...");
+              
             const REVERSE_GEOCODING_URL = `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${API_KEY}`;
             
             fetch(REVERSE_GEOCODING_URL)
