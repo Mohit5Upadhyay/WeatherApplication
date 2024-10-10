@@ -401,10 +401,29 @@ height: 50%;
     gap: 20px;
     
 }
-.social-media ul>li>a {
-    text-decoration: none;
-    color: #fff;
+.icon-container {
+    display: flex;
+    gap: 20px;
 }
+.icon {
+    width: 50px;
+    height: 50px;
+    background-color:#676565;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.icon:hover {
+    transform: scale(1.2);
+    box-shadow: 1px 1px 3px 2px #181C14;
+}
+.icon img {
+    width: 24px;
+    height: 24px;
+}
+
 .act{
     display: flex;
     align-items: center;
