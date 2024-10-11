@@ -16,11 +16,42 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
-/* Dark Mode */
+/* Dark Mode
 body.dark-mode {
     background-color: #1e1e1e;
     color: #fff;
-}
+} */
+
+:root {
+    --background-color: #ffffff;
+    --text-color: #000000;
+  }
+  
+  body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .dark-mode {
+    --background-color: #2c2c2c;
+    --text-color: #ffffff;
+  }
+  
+  button {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: var(--text-color);
+    color: var(--background-color);
+  }
+  
 
 body.dark-mode h1  {
     background-color: #244b73; /* Dark violet background in dark mode */
@@ -229,7 +260,7 @@ height: 50%;
 }
 .weather-input .location-btn{
     /* background: #6c757d; */
-    background: #776B5D;
+    background: #e08319;
 
 }
 .weather-data{
@@ -239,7 +270,7 @@ height: 50%;
 /* left side of the weather APP  Update Dashboard  */
 .current-weather:hover{
     /* background: #5163ad; */
-    background: #c98037;
+    background: #1f9fdf;
 
 }
 .current-weather{
@@ -385,12 +416,12 @@ height: 50%;
     color: #fff;
     padding: 26px  4px;
     /* background: #5372f0; */
-    background: #676565;
+    background: #244b73;;
     
 }
 .more-info >p>a {
     text-decoration: none;
-    color: #fff;
+    color: #cbdfe6;
     font-size: small;
 }
 .social-media ul{
@@ -413,7 +444,7 @@ height: 50%;
     color: #fff;
     padding: 10px  5px;
     /* background: #5372f0; */
-    background: #676565;
+    background: #656767;
 }
 
 @media (max-width : 865px )  {
