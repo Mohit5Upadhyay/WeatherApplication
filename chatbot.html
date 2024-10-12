@@ -92,20 +92,97 @@
       </div>
     </div>
 
-    <style>
-      .chat-container {
-        width: 100%;
-        max-width: 500px;
-      }
+  <style>
+      /* Add smooth transition and hover effects */
+.chat-container {
+  width: 100%;
+  max-width: 500px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  animation: fadeIn 0.5s ease-in-out;
+}
 
-      body,
-      html {
-        margin: 0;
-        padding: 0;
-        background-color: #dc5920; /* Optional: to visualize the centering */
-      }
+input:focus {
+  outline: none;
+  box-shadow: 0px 0px 10px rgba(0, 123, 255, 0.5);
+}
+
+/* Improved button design */
+#generate-btn {
+  background-color: #1B63AC;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+#generate-btn:hover {
+  background-color: #14518C;
+}
+
+#inputGroupFileAddon {
+  background-color: #14518C;
+  color: white;
+  border-radius: 8px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+#inputGroupFileAddon:hover {
+  background-color: #0D3A68;
+}
+
+/* Smooth fade-in animation */
+@keyframes fadeIn {
+  0% {
+      opacity: 0;
+      transform: translateY(10px);
+  }
+  100% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Style the chat messages */
+.chat-message {
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.2s ease;
+}
+
+.user-message {
+  background-color: #1B63AC;
+  color: white;
+  text-align: right;
+}
+
+.ai-message {
+  background-color: #F3F3F3;
+  color: #333;
+  text-align: left;
+}
+
+.loading-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: #1B63AC;
+  border-radius: 50%;
+  margin-right: 3px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
     </style>
-
+    
     <script type="importmap">
       {
         "imports": {
@@ -354,6 +431,13 @@
           previewContainer.style.display = "none";
         }
       }
+      // with the helo of this after writing the text to the ai we can submit it by the "Enter Key" 
+       document.getElementById("prompt-input").addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            document.getElementById("generate-btn").click(); // Trigger the click event for the Send button
+        }
+    });
     </script>
     <script>
       var loader = document.getElementById("Loader");
