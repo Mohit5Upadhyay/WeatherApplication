@@ -31,6 +31,12 @@ body.dark-mode h1  {
     height: auto;
     margin-left: 10px;
 }
+
+.logo-link{
+    display: flex;
+    text-decoration: none;
+    color: #fff;
+}
 /* Style for the navbar */
 nav{
     display: flex;
