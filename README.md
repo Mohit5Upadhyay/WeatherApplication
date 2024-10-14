@@ -1,4 +1,4 @@
-# Weather App
+# Weather App [Click here](https://mohit5upadhyay.github.io/WeatherApplication/)
 
 ## Overview
 
@@ -31,13 +31,15 @@ The Weather App is a web application that provides real-time weather updates and
 1. Clone the repository:
    ```bash
    git clone https://github.com/chikatlarakesh/Weather-App.git
-Open the `index.html` file in your web browser.
 
-Optionally, you can customize the API key in the `script.js` file. Sign up at OpenWeatherMap to obtain your own API key.
+## Installation
+
+1. Open the `index.html` file in your web browser.
+2. Optionally, you can customize the API key in the `script.js` file. Sign up at [OpenWeatherMap](https://openweathermap.org/) to obtain your own API key.
 
 ## Usage
 
-- Enter a city name in the input field and click the Search button.
+- Enter a city name in the input field and click the **Search** button.
 - Alternatively, click the **Use Current Location** button to get weather updates based on your geolocation.
 - View the current weather and the 5-day forecast displayed on the screen.
 
@@ -49,19 +51,19 @@ Contributions are welcome! Please follow these steps to contribute:
 2. Create a new branch:
    ```bash
    git checkout -b feature/YourFeature
+
 3. Make your changes and commit them:
    ```bash
-   git commit -m 'Add some feature'
+   git commit -m 'Added new feature'
+
 4. Push to the branch:
    ```bash
    git push origin feature/YourFeature
 5. Open a pull request.
 
-## License
-
+License
 This project is licensed under the MIT License. See the LICENSE file for more details.
 
-## Acknowledgements
-
-- OpenWeatherMap API for providing weather data.
-- Font Awesome for icons.
+Acknowledgements
+OpenWeatherMap API for providing weather data.
+Font Awesome for icons.

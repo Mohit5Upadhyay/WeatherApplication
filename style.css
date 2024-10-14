@@ -8,19 +8,137 @@
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
 }
-body{
+/* Light Mode (default) */
+body {
     background: #e3f2fd;
+    background-color: rgb(192, 242, 247);
+    color: black;
+    transition: background-color 0.3s, color 0.3s;
 }
-h1{
+
+/* Dark Mode */
+body.dark-mode {
+    background-color: #1e1e1e;
+    color: #fff;
+}
+
+body.dark-mode h1  {
+    background-color: #244b73; /* Dark violet background in dark mode */
+}
+.logo{
+    max-width: 60px; /* Adjust the size to your needs */
+    margin-right: 10px;
+    height: auto;
+    margin-left: 10px;
+}
+/* Style for the navbar */
+nav{
+    display: flex;
+    height: 50px;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;   
+}
+input[type="checkbox"]{
+    appearance: none;
+    -webkit-appearance: none;
+}
+label{
+    display: none;
+    cursor: pointer;
+}
+nav ul{
+    float: right;
+    margin-right: 50px;
+    
+
+}
+nav ul li{
+    display: inline-block;
+    line-height: 80px;              /*gap from above */
+    margin: 0 5px;                 /*gap in between */
+    
+}
+
+nav ul li a{
+    color: white;
+    font-size:17px;
+    text-decoration: none;
+    padding: 6px 20px;
+    transition: .5s;
+    position: relative;
+    
+    
+}
+nav a:hover{
+    color: aqua;
+    
+}
+nav a span{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    
+    border-bottom: 2px solid aqua;
+    border: radius 15px; 
+    transform: scale(0) translateY(50px);
+    transition: .5s;
+    opacity: 0;
+}
+nav a:hover span{
+    transform: scale(1) translateY(2px);
+    opacity: 1;
+}
+/* H1 styling */
+h1 {
     font-size: 1.8rem;
     color: #fff;
-    padding: 18px  0;
-    /* background: #5372f0; */
-    background: #f18d28;
+    padding: 15px 0;
+    background: #2c6c8c;
     display: flex;
-    justify-content: center;
     align-items: center;
+    position: relative;
 }
+
+/* Dark Mode Toggle Button styling */
+.dark-mode-toggle {
+    position: absolute;
+    background: none;
+    right: 2%;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.5rem;
+    display: flex;
+}
+
+.dark-mode-toggle:focus {
+    outline: none;
+}
+
+/* Icon styling */
+.dark-mode-toggle i {
+    transition: color 0.3s, transform 0.3s;
+}
+
+.dark-mode-toggle:hover i {
+    color: #ddd;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #333;
+    color: #fff;
+}
+
+body.dark-mode h1 {
+    background-color: #444;
+}
+
+
 h1::selection{
     color: green;
     background: black;
@@ -32,7 +150,32 @@ h1::selection{
 }
 .weather-input{
     width: 550px;
+    
+    display: flex;
+    flex-direction: column;
 }
+.search-sec{
+    
+    height: 45%;
+
+
+}
+
+
+.map-sec{
+background-color: #5fdec9;
+height: 50%;
+}
+
+
+#leaflet-map {
+    width: 390px    !important;
+    height: 300px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    position: absolute !important;
+}
+
 .weather-input input{
     width: 100%;
     height: 46px;
@@ -106,11 +249,37 @@ h1::selection{
     /* background: #5372f0; */
     background: #f18d28;
     display: flex;
-    justify-content: space-between;
+ justify-content:space-between ;
+ gap: 50px;
+
 }
 .current-weather h2{
-    font-size: 1.7rem;
+    font-size: 1.3rem;
 
+}
+ 
+
+.graph-sec img {
+    width: 100px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    max-width:100%; /* Ensure it doesn’t exceed its container */
+    max-height: 250px; /* Adjust the height as needed */
+
+}
+
+ 
+#line-grap {
+    height: 150px;
+    width: 600px;
+    border: 0.1px solid black;
+    border-radius: 8px;
+}
+ 
+ 
+.details {
+     
+    width: 35%; /* Adjust width as needed */
+    height: 100%; /* Ensure it has a defined height */
 }
 .weather-data h4{
     margin-top: 12px;
@@ -257,3 +426,6 @@ h1::selection{
         width: 100%;
     }
 }
+
+
+
