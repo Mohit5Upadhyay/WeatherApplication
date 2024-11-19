@@ -8,6 +8,7 @@ const currentWeatherDiv = document.querySelector(".current-weather");
 const API_KEY = "eb25bb98e70091ae7787a643b17b1686";  // OpenWeatherMap API key
 
 // Function to create weather card HTML
+
 const createWeatherCard = (cityName, weatherItem, index,aqiText) => {
     const tempCelsius = (weatherItem.main.temp - 273.15).toFixed(2);
     const weatherIcon = `https://openweathermap.org/img/wn/${weatherItem.weather[0].icon}@2x.png`;
@@ -237,4 +238,8 @@ darkModeToggle.addEventListener('click', function () {
         localStorage.setItem('darkMode', 'disabled'); // Save preference to localStorage
     }
 });
-
+// For Loader Page
+const preloader = document.querySelector("#loader");
+function Finish_Loader(){
+    preloader.style.display = "none";
+}

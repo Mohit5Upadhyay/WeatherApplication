@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHkAAAB5CAMAAAAqJH57AAAAt1BMVEX///8ate3/wQYAseyP1fT/vgD/vAAAs+wAtPIAtPX/+Oj//ff///3/xzsAruv/ugD/1nj/7sv2/P5Zw/Dp9/3/2IP/57T/89j/3ZD/9N3/2on/zln/5a3/6bz/4aH/7MX/0GXb8ftuyfG24/j/yk7/xS7/wyH/yUX/03DM6vqn3fd+z/NHvvBWu9xhu9CDvLatv5fSv23rwUF8u77kwk26wIhDuOHzwi3FwHd2uMTCv36ewKnW2LPgBjeNAAAEB0lEQVRoge2Y2ZaiMBBAJZigouIuiuLWuNv79Kz//12TICjYQooQ23Nmch85kWsVlUpBoaBQKBQKhUKhyM2g26veRdy3sNW9i7mLEUKVe5gb/7zZHNkDrtkcDfvSzQ4hKK6+Yp4Sgi/+X24qVIOd2KWRhfCDGb0yYYtsyWaTBUgmsWtDtIoFWPXoGuxKNhdspl6mLnHZEiS9uZgsIDJOW8LEOHWFGGOCkMUz4wf54kJ1TUgtdYWLyVJ2ZR/VzYmZvqI/uUtL+zIqY9e1bbfX/9KDsjJysEUwg1iWZze/yDtxiL9xT9DCcjkVkJVrt2uucNx7lCP7ymJT8EmYa281ubzWuKI9ur3LtZWGV7u8BsOmrQNPY/ukv0wSswZnR0OsunQtFuulU78b4tH5yjjFy9TTc8YrNeJfEtrgPYLiP6bHYjrYOanX/p/EKxExDRGxn1thQ+zxxKxtB9mtOv6fbgiXvE0wcYKbTQhXTNXr09+kv8zTxCu2G4grS4A4Mhg0h2J1/ZlpenWd1bIPDU5ZR3D4N8sELNcMS24X70HKK0DuWLKCi5Elc9gf8LfyGSzzBTPxnLjKUsaR2dlsd+32/vD49PzyCjWT3OnubNuarhsMvVQua4/PMHneF5zZ3NANLUqprL29Q9TTXPHO63FtKH/6zjc/5HjQW/2a13dr37hmL+ig1ZFLyfK+02rXE7yM8htXfTSbnj+fWg2wuKMlBRyEfeBl/Hg8joPGt4QeIjwxVX9w1EdzM6O5xRVzow5VXcSyjUbpwhNtvpj3rGthbQ/6FGiuizpATNXPKWZHZNbdpFV1LOEpPWUqIG7tIbn2zY+JYgJ9sFG20JCp+keSWWQUg4esacYhySzSPBew8jpSfvn+/v7++mlCE/oiBtpRJz4+6NbfH37+im9ukXepThZviEEPz6fIwY3hbfpMpmRHKZV/5wq5sMuU7BjlsJXjoYC4AOjYiRhBa0n/NJpAS9zrq9nDxsH0V+16DXjahQrsTOnDO+8omyAM+2LUmhXn2fbUZ8pPKJw6j2/uuMZ9x2oVtTodb/OJadR/Tne0g6mAc2ottMSBLxPG/HTLatcCbLEd/JjgqWfnuw4e6PyX/ll6J9o/PqMXozeerIepJZbhYORi7FNjjDOTFzGjAzfPpdRWiFFczFowcUeqmKp1fb8FmYGjZiZ5fQ/Jed6+dd1t8NVZBq8sao37sHMeEsnqIs88u5FZM3hB3ypmTV/c5znTmHe8dN+ktrXYsZXAVv5+BppvVtzcbMs8I6NwKwzyVUTMDDg3NrcIGpDsgtzRIBTzu6fPQs78FxEbG5CYPuv91Y+coujajO8M2cyNui6HugabDE60NtuiDLYZ4lUoFAqFQqH43/gLQCdJ0kdhVnYAAAAASUVORK5CYII=" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <script src="script.js" defer></script>
+   
 
     <style>
         #windy {
@@ -24,7 +24,7 @@
         .chatbot-container {
             position: fixed;
             bottom: 20px; /* Adjust as needed */
-            right: 20px; /* Adjust as needed */
+            left: 75px; /* Adjust as needed */
             z-index: 1000; /* Ensure it appears above other elements */
         }
 
@@ -55,6 +55,7 @@
             padding: 5px;
             border-radius: 5px;
             white-space: nowrap; /* Prevent text from wrapping */
+
         }
 
         .chatbot-button:hover .tooltip-text {
@@ -63,8 +64,32 @@
     </style>
 </head>
 
-<body> 
-    <h1>
+<body onload="Finish_Loader()"> 
+<!-- Adding Pre-Loaders  -->
+    <div id="loader"> 
+<div class="wrapper">
+  <div class="cloud">
+    <div class="cloud_left"></div>
+    <div class="cloud_right"></div>
+  </div>
+  <div class="rain">
+    <div class="drop"></div>
+    <div class="drop"></div>
+    <div class="drop"></div>
+    <div class="drop"></div>
+    <div class="drop"></div>
+  </div>
+  <div class="surface">
+    <div class="hit"></div>
+    <div class="hit"></div>
+    <div class="hit"></div>
+    <div class="hit"></div>
+    <div class="hit"></div>
+  </div>
+</div>
+    </div> 
+<!-- End Pre-Loader -->
+    <h1 >
         <img src="logoo.png" alt="Logo" class="logo"> SkyStream
         <nav>
             <input type="checkbox" id="hamburger"/>
@@ -168,7 +193,7 @@
             <img class="h-20" src="chatbot.gif" alt="chatbot">
             <span class="tooltip-text">
                 Welcome to Weather App! <br>
-                How can I help You? ^_^ 
+                How may I assist You? ^_^ 
             </span>
         </button>
     </div>
@@ -183,11 +208,12 @@
         </div>
         <div class="social-media">
             <ul>
-                <li><i class="fa-brands fa-youtube" style="color: #e60505;"></i> <a href="https://www.youtube.com/channel/UC_qxTReoq07UVARm87CuyQw/featured?view_as=subscriber" target="_blank">Youtube</a></li>
-                <li><i class="fa-brands fa-square-x-twitter" style="color: #0a0a0a;"></i> <a href="https://twitter.com/Indiametdept" target="_blank">Twitter</a></li>
-                <li><i class="fa-brands fa-linkedin" style="color: #2267dd;"></i><a href="#">LinkedIn</a></li>
+                <li> <a href="https://www.youtube.com/channel/UC_qxTReoq07UVARm87CuyQw/featured?view_as=subscriber" target="_blank"><i class="fa-brands fa-youtube" style="color: red;"></i></a></li>
+                <li><a href="https://twitter.com/Indiametdept" target="_blank"><i class="fa-brands fa-square-x-twitter" style="color: black;"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-linkedin" style="color: #0a66c2;"></i></a></li>
             </ul>
         </div>
     </div>
+    <script src="script.js" defer></script>
 </body>
 </html>

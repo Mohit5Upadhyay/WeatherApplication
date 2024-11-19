@@ -3,6 +3,9 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Lato", sans-serif;
+  font-weight: 500;
+  font-style: normal;
 }
 
 body {
@@ -21,10 +24,11 @@ nav{
 nav ul li{
     display: inline-block;
     line-height: 80px;              /*gap from above */
-    margin: 0 5px;                 /*gap in between */
+    margin: 0 5px; 
+    font-weight: 600;                /*gap in between */
 }
 nav ul li a{
-    color: white;
+    color: rgb(189, 189, 189);
     font-size:17px;
     text-decoration: none;
     padding: 6px 20px;
