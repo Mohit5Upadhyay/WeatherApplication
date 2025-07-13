@@ -120,6 +120,9 @@
         HarmBlockThreshold,
         HarmCategory,
       } from "@google/generative-ai";
+      // SECURITY WARNING: API keys should not be hardcoded in production code
+      // Consider using environment variables or a proper secrets management system
+      // For development purposes only
       const API_KEY = "AIzaSyDTWcyCwDbOL7kpbdmFXkolBavwRpP-sZA"; // Replace with your gemini-api actual API key ****
       const genAI = new GoogleGenerativeAI(API_KEY);
       let chat;

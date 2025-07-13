@@ -1,1 +1,25 @@
+# Environment variables
 .env
+.env.local
+.env.production
+
+# API keys (backup location)
+api_keys/
+
+# Node modules (if using Node.js build tools)
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
