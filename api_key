@@ -1,3 +1,10 @@
-/* windy api_key:H3MzWInDcItupZcD6PvvOdQ92hG6mNKw;
-API_key geocode:931add65f661b62e41a10eb706475ea9; */
+# API Keys Reference
+# For development, you can add your API keys directly in the JavaScript files
+# For production, use environment variables or a proper secrets management system
 
+# Windy API Key: H3MzWInDcItupZcD6PvvOdQ92hG6mNKw
+# OpenWeatherMap API Key: eb25bb98e70091ae7787a643b17b1686
+# Google AI API Key: AIzaSyDTWcyCwDbOL7kpbdmFXkolBavwRpP-sZA
+
+# Security Note: These keys should be kept private and not committed to public repositories
+# Consider using environment variables in production

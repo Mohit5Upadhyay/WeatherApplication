@@ -32,8 +32,11 @@ The Weather App is a web application that provides real-time weather updates and
 
 1. Clone the repository:
    ```bash
-   git clone https://mohit5upadhyay.github.io/WeatherApplication/
-Open the `index.html` file in your web browser.
+   git clone https://github.com/Mohit5Upadhyay/WeatherApplication.git
+   cd WeatherApplication
+   ```
+
+2. Open the `index.html` file in your web browser.
 
 Optionally, you can customize the API key in the `script.js` file. Sign up at OpenWeatherMap to obtain your own API key.
 
@@ -51,13 +54,20 @@ Contributions are welcome! Please follow these steps to contribute:
 2. Create a new branch:
    ```bash
    git checkout -b feature/YourFeature
-3. Make your changes and commit them:
+3. Optionally, you can customize the API keys in the JavaScript files:
+   - Copy `.env.example` to `.env` and add your API keys
+   - Or directly update the API keys in `script.js` and `chatbot.html`
+   - Sign up at [OpenWeatherMap](https://openweathermap.org/api) to obtain your weather API key
+   - Sign up at [Google AI Studio](https://ai.google.dev/) for the chatbot API key
+   - Sign up at [Windy](https://windy.com/) for the map API key
+4. Make your changes and commit them:
    ```bash
    git commit -m 'Added new feature'
-4. Push to the branch:
+5. Push to the branch:
    ```bash
    git push origin feature/YourFeature
-5. Open a pull request.
+   ```
+6. Open a pull request.
 ## License
 This project is licensed under the MIT License. See the LICENSE file for more details.
 ## Acknowledgements
