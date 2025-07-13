@@ -5,7 +5,8 @@ const locationButton = document.querySelector(".location-btn");
 const weatherCardsDiv = document.querySelector(".weather-cards");
 const currentWeatherDiv = document.querySelector(".current-weather");
 
-const API_KEY = "eb25bb98e70091ae7787a643b17b1686";  // OpenWeatherMap API key
+// Get API key from config file
+const API_KEY = window.CONFIG?.WEATHER_API_KEY || "eb25bb98e70091ae7787a643b17b1686";  // OpenWeatherMap API key
 
 // Function to create weather card HTML
 const createWeatherCard = (cityName, weatherItem, index,aqiText) => {
@@ -16,7 +17,8 @@ const createWeatherCard = (cityName, weatherItem, index,aqiText) => {
         return `
             <div class="details">
                 <h2>${cityName}</h2>
-                <h4>${weatherItem.dt_txt.split(" ")[0]}</h4> 
+                <h4>${weatherItem.dt_txt.split(" ")[0]}</h4>
+                <h4>Temperature: ${tempCelsius}°C</h4>
                 <h4>Wind Speed: ${weatherItem.wind.speed} M/s</h4>
                 <h4>Humidity: ${weatherItem.main.humidity} %</h4>
                 <h4>Air Quality: ${aqiText}</h4>
@@ -24,7 +26,6 @@ const createWeatherCard = (cityName, weatherItem, index,aqiText) => {
             <img src="graph.png" alt="line-graph" id="line-grap">
             <div class="icon">
                 <img src="${weatherIcon}" alt="weather-icon">
-                 
                 <h4>${weatherItem.weather[0].description}</h4>
             </div>`;
     } else { // Forecast cards
@@ -58,7 +59,6 @@ const getAirQuality = (lat, lon) => {
             const aqiDescription = ["Good", "Fair", "Moderate", "Poor", "Very Poor"];
             const aqiText = aqiDescription[aqi - 1] || "Unknown";
             return aqiText;
-           // currentWeatherDiv.insertAdjacentHTML("beforeend", `<h4>Air Quality: ${aqiText}</h4>`);
         })
         .catch(error => {
             console.error("Error fetching air quality data:", error);
@@ -110,8 +110,6 @@ const getWeatherDetails = (cityName, lat, lon) => {
             // Log lat and lon before updating the map
             console.log(`Updating map to: Latitude: ${lat}, Longitude: ${lon}`);
             updateMap(lat, lon);  // Ensure this is called after the weather cards are generated
-            // Call the air quality function
-           // Fetch AQI data
         });
     })
         .catch(error => {
@@ -180,7 +178,7 @@ cityInput.addEventListener("keyup", e => e.key === "Enter" && getCityCoordinates
 
 // Windy API setup
 const options = {
-    key: 'H3MzWInDcItupZcD6PvvOdQ92hG6mNKw', // Replace with your Windy API key
+    key: window.CONFIG?.WINDY_API_KEY || 'H3MzWInDcItupZcD6PvvOdQ92hG6mNKw', // Replace with your Windy API key
     lat: 19.0760, // Default latitude for Mumbai
     lon: 72.8777, // Default longitude for Mumbai
     zoom: 10,
