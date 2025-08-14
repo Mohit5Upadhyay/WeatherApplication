@@ -33,11 +33,41 @@ body.dark-mode h1  {
 }
 /* Style for the navbar */
 nav{
+   position: relative; 
+
+}
+.nav-links {
     display: flex;
-    height: 50px;
-    width: 100%;
+    gap: 15px;
+    list-style: none;
+    padding-right: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+}
+#hamburger {
+    display: none;
+}
+
+.hamburger-icon {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #ced4de;
+}
+.header {
+    display: flex;
     align-items: center;
-    justify-content: space-between;   
+    justify-content: space-between;
+    padding: 10px 15px;
+    background: #1e293b;
+    color: white;
+    flex-wrap: wrap;
 }
 input[type="checkbox"]{
     appearance: none;
@@ -105,9 +135,9 @@ h1 {
 
 /* Dark Mode Toggle Button styling */
 .dark-mode-toggle {
-    position: absolute;
+   
     background: none;
-    right: 2%;
+
     border: none;
     color: #fff;
     cursor: pointer;
@@ -373,6 +403,37 @@ height: 50%;
         width: 100%;
     }
 }
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        background: #1e293b;
+        position: absolute;
+        top: 40px;
+        right: 0;
+        width: 150px;
+        padding: 10px;
+    }
+
+    #hamburger:checked ~ .nav-links {
+        display: flex;
+    }
+
+    .hamburger-icon {
+        display: block;
+    }
+
+    .chatbot-button {
+        width: 40px;
+        height: 40px;
+    }
+
+    .chatbot-button img {
+        width: 25px;
+        height: 25px;
+    }}
 
 /* footer css */
 
