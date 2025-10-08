@@ -61,3 +61,511 @@
   </footer>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - SkyStream</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    /* Animated Background */
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.1;
+    }
+
+    .cloud {
+      position: absolute;
+      background: white;
+      border-radius: 100px;
+      opacity: 0.6;
+      animation: float 20s infinite ease-in-out;
+    }
+
+    .cloud1 { width: 100px; height: 40px; top: 10%; left: -100px; animation-delay: 0s; }
+    .cloud2 { width: 150px; height: 60px; top: 30%; left: -150px; animation-delay: 5s; }
+    .cloud3 { width: 120px; height: 50px; top: 60%; left: -120px; animation-delay: 10s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateX(0) translateY(0); }
+      50% { transform: translateX(calc(100vw + 200px)) translateY(-20px); }
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 0;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      animation: slideDown 0.5s ease-out;
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-100%); }
+      to { transform: translateY(0); }
+    }
+
+    nav .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav ul li a {
+      color: #333;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      position: relative;
+      padding: 0.5rem 1rem;
+      transition: all 0.3s ease;
+    }
+
+    nav ul li a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    nav ul li a:hover::before {
+      width: 80%;
+    }
+
+    nav ul li a:hover {
+      color: #667eea;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Header Section */
+    header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 150px 0 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '☁️';
+      position: absolute;
+      font-size: 200px;
+      top: -50px;
+      right: -50px;
+      opacity: 0.1;
+      animation: rotate 20s linear infinite;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      font-weight: 800;
+      animation: fadeInUp 0.8s ease-out;
+      text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    header p {
+      font-size: 1.3rem;
+      opacity: 0.95;
+      animation: fadeInUp 0.8s ease-out 0.2s backwards;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Main Content */
+    .about-section {
+      background: white;
+      padding: 80px 0;
+      position: relative;
+    }
+
+    .content-card {
+      background: white;
+      padding: 60px;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+      margin-bottom: 40px;
+      animation: fadeIn 1s ease-out;
+      transition: transform 0.3s ease;
+    }
+
+    .content-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.15);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .about-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: #667eea;
+      font-weight: 800;
+      position: relative;
+      display: inline-block;
+    }
+
+    .about-section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 2px;
+    }
+
+    .about-section p {
+      font-size: 1.15rem;
+      margin-bottom: 2rem;
+      color: #555;
+      line-height: 1.8;
+    }
+
+    /* Feature Grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin: 40px 0;
+    }
+
+    .feature-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 40px 30px;
+      border-radius: 15px;
+      color: white;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateX(-100%);
+      transition: transform 0.5s ease;
+    }
+
+    .feature-card:hover::before {
+      transform: translateX(0);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .feature-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .feature-card p {
+      color: rgba(255, 255, 255, 0.95);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Why Choose Section */
+    .why-choose {
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+      padding: 60px;
+      border-radius: 20px;
+      margin: 40px 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .stat-card {
+      text-align: center;
+      padding: 30px;
+      background: white;
+      border-radius: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      color: #666;
+      font-weight: 600;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      text-align: center;
+      padding: 80px 60px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 20px;
+      color: white;
+      margin: 40px 0;
+    }
+
+    .cta-section h2 {
+      color: white;
+      margin-bottom: 1rem;
+    }
+
+    .cta-section h2::after {
+      background: white;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 15px 40px;
+      background: white;
+      color: #667eea;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-top: 20px;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      background: #f0f0f0;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-align: center;
+      padding: 40px 0;
+      margin-top: 0;
+    }
+
+    footer p {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header h1 { font-size: 2.5rem; }
+      header p { font-size: 1.1rem; }
+      .about-section h2 { font-size: 2rem; }
+      .content-card { padding: 40px 30px; }
+      nav ul { gap: 1rem; }
+      .features-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-animation">
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    <div class="cloud cloud3"></div>
+  </div>
+
+  <nav>
+    <div class="container">
+      <div class="logo">☁️ SkyStream</div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#mission">Mission</a></li>
+        <li><a href="#features">Features</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header>
+    <div class="container">
+      <h1>About SkyStream</h1>
+      <p>Your trusted source for accurate and up-to-date weather forecasts</p>
+    </div>
+  </header>
+
+  <section class="about-section">
+    <div class="container">
+      <div class="content-card">
+        <h2>Who We Are</h2>
+        <p>
+          At SkyStream, we're passionate about helping you stay informed and prepared for all weather conditions, no matter where you are. Our team of meteorologists, data scientists, and tech enthusiasts work around the clock to provide you with precise, real-time forecasts.
+        </p>
+      </div>
+
+      <div class="content-card" id="mission">
+        <h2>Our Mission</h2>
+        <p>
+          Our mission is simple: to deliver accurate and personalized weather insights to help you make smarter decisions. We leverage cutting-edge technology and global weather data sources to ensure our forecasts are reliable, timely, and easy to understand.
+        </p>
+      </div>
+
+      <div class="content-card" id="features">
+        <h2>What We Offer</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <span class="feature-icon">⚡</span>
+            <h3>Real-Time Forecasts</h3>
+            <p>Stay ahead of the weather with up-to-the-minute updates and accurate predictions.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">💬</span>
+            <h3>Smart Chatbot</h3>
+            <p>Interact with our user-friendly AI chatbot for instant weather information.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">📍</span>
+            <h3>Localized Data</h3>
+            <p>Get hyper-local forecasts tailored to your exact location for precision.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">🌍</span>
+            <h3>Climate Insights</h3>
+            <p>Access long-term weather trends and insights into changing climate patterns.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="why-choose">
+        <h2>Why Choose SkyStream?</h2>
+        <p>
+          We believe that knowing the weather shouldn't be complicated. That's why we've built an intuitive app that combines accuracy, ease of use, and beautifully designed visuals to make your weather experience as smooth as possible.
+        </p>
+        
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span class="stat-number">99%</span>
+            <span class="stat-label">Accuracy Rate</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">24/7</span>
+            <span class="stat-label">Live Updates</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">100+</span>
+            <span class="stat-label">Countries</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">1M+</span>
+            <span class="stat-label">Happy Users</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-section">
+        <h2>Join Us on This Journey</h2>
+        <p>
+          At SkyStream, we're constantly improving our app and adding new features to enhance your experience. We value your feedback and encourage you to share your thoughts, so we can continue to provide the best weather forecasting service out there.
+        </p>
+        <a href="#" class="cta-button">Get Started Today</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 SkyStream. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
