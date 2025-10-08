@@ -1,63 +1,285 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Us - WeatherWise</title>
-  <link rel="stylesheet" href="about.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Weather Application</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1B63AC;
+            --secondary: #dc5920;
+            --accent: #2dd4bf;
+            --text: #333;
+            --light: #f5f5f5;
+            --dark: #1a1f36;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            background: var(--gradient);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .hero {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-member {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+        }
+
+        .member-image {
+            height: 250px;
+            background: var(--gradient);
+            position: relative;
+        }
+
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .member-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--dark);
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+
+        .timeline-item {
+            padding: 1.5rem;
+            background: white;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            .hero {
+                padding: 2rem 1rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <nav>
-        <ul>
-          <li><a href="index.html">Home<span></span></a></li>
-        </ul>
-      </nav>
     <div class="container">
+        <section class="hero">
+            <h1>About Weather Application</h1>
+            <p>Pioneering weather forecasting since 2020</p>
+        </section>
+
+        <section class="section">
+            <h2>Our Impact</h2>
+            <div class="grid">
+                <div class="stat-card">
+                    <div class="stat-number">5M+</div>
+                    <div>Active Users</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">200+</div>
+                    <div>Countries Covered</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">99.9%</div>
+                    <div>Accuracy Rate</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Our Mission</h2>
+            <p>To provide accurate, accessible, and actionable weather information to help people and organizations make better decisions. We combine cutting-edge technology with meteorological expertise to deliver precise forecasts when and where they matter most.</p>
+        </section>
+
+        <section class="section">
+            <h2>Leadership Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://source.unsplash.com/random/400x400?face-1" alt="CEO">
+                    </div>
+                    <div class="member-info">
+                        <h3>Sarah Johnson</h3>
+                        <p>Chief Executive Officer</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://source.unsplash.com/random/400x400?face-2" alt="CTO">
+                    </div>
+                    <div class="member-info">
+                        <h3>David Chen</h3>
+                        <p>Chief Technology Officer</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://source.unsplash.com/random/400x400?face-3" alt="CSO">
+                    </div>
+                    <div class="member-info">
+                        <h3>Maria Rodriguez</h3>
+                        <p>Chief Science Officer</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-researchgate"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Our Journey</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>2020</h3>
+                    <p>Founded with a vision to revolutionize weather forecasting</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>2021</h3>
+                    <p>Launched mobile applications and reached 1M users</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>2022</h3>
+                    <p>Expanded to 100+ countries and introduced AI-powered predictions</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>2023</h3>
+                    <p>Achieved industry-leading forecast accuracy and 5M+ active users</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Add animation to stats when they come into view
+        const stats = document.querySelectorAll('.stat-number');
         
-      <h1>About Us</h1>
-      <p>Your trusted source for accurate and up-to-date weather forecasts.</p>
-    </div>
-  </header>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
 
-  <section class="about-section">
-    <div class="container">
-      <h2>Who We Are</h2>
-      <p>
-        At SkyStream, we're passionate about helping you stay informed and prepared for all weather conditions, no matter where you are. Our team of meteorologists, data scientists, and tech enthusiasts work around the clock to provide you with precise, real-time forecasts.
-      </p>
-      
-      <h2>Our Mission</h2>
-      <p>
-        Our mission is simple: to deliver accurate and personalized weather insights to help you make smarter decisions. We leverage cutting-edge technology and global weather data sources to ensure our forecasts are reliable, timely, and easy to understand.
-      </p>
-      
-      <h2>What We Offer</h2>
-      <ul>
-        <li><strong>Real-Time Forecasts:</strong> Stay ahead of the weather with up-to-the-minute updates.</li>
-        <li><strong>Chatbot:</strong> Interact with a user friendly chatbot..</li>
-        <li><strong>Localized Data:</strong> Our app offers hyper-local forecasts tailored to your exact location.</li>
-        <li><strong>Climate Insights:</strong> Access long-term weather trends and insights into changing climate patterns.</li>
-      </ul>
-
-      <h2>Why Choose SkyStream?</h2>
-      <p>
-        We believe that knowing the weather shouldn't be complicated. That's why we've built an intuitive app that combines accuracy, ease of use, and beautifully designed visuals to make your weather experience as smooth as possible.
-      </p>
-
-      <h2>Join Us on This Journey</h2>
-      <p>
-        At SkyStream, we're constantly improving our app and adding new features to enhance your experience. We value your feedback and encourage you to share your thoughts, so we can continue to provide the best weather forecasting service out there.
-      </p>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container">
-      <p>&copy; 2024 SkyStream. All rights reserved.</p>
-    </div>
-  </footer>
+        stats.forEach(stat => {
+            stat.style.opacity = 0;
+            stat.style.transform = 'translateY(20px)';
+            stat.style.transition = 'opacity 0.6s, transform 0.6s';
+            observer.observe(stat);
+        });
+    </script>
 </body>
 </html>
