@@ -4,30 +4,37 @@ const searchButton = document.querySelector(".search-btn");
 const locationButton = document.querySelector(".location-btn");
 const weatherCardsDiv = document.querySelector(".weather-cards");
 const currentWeatherDiv = document.querySelector(".current-weather");
+const addToFavBtn = document.getElementById('addToFavBtn'); // Select the Add to Favourites button
+const weatherInputDiv = document.querySelector(".weather-input"); // Added selector for the parent container
 
-const API_KEY = "eb25bb98e70091ae7787a643b17b1686";  // OpenWeatherMap API key
+const API_KEY = "4e75be8e17dc6b780ba1f05afee3a368";  // OpenWeatherMap API key
+
+// Helper function to convert Kelvin to Celsius
+const kelvinToCelsius = (tempK) => (tempK - 273.15).toFixed(2);
 
 // Function to create weather card HTML
-const createWeatherCard = (cityName, weatherItem, index,aqiText) => {
-    const tempCelsius = (weatherItem.main.temp - 273.15).toFixed(2);
+const createWeatherCard = (cityName, weatherItem, aqiText, index) => {
+    // Temperature conversion from Kelvin (default OpenWeatherMap) to Celsius
+    const tempCelsius = kelvinToCelsius(weatherItem.main.temp);
     const weatherIcon = `https://openweathermap.org/img/wn/${weatherItem.weather[0].icon}@2x.png`;
     
-    if (index === 0) {  // Main weather card
+    if (index === 0) {  // Main weather card (Current Weather)
         return `
             <div class="details">
-                <h2>${cityName}</h2>
-                <h4>${weatherItem.dt_txt.split(" ")[0]}</h4> 
+                <h2>${cityName} (${weatherItem.dt_txt.split(" ")[0]})</h2>
+                <h4>Temperature: ${tempCelsius}°C</h4> 
                 <h4>Wind Speed: ${weatherItem.wind.speed} M/s</h4>
                 <h4>Humidity: ${weatherItem.main.humidity} %</h4>
                 <h4>Air Quality: ${aqiText}</h4>
             </div>
-            <img src="graph.png" alt="line-graph" id="line-grap">
             <div class="icon">
                 <img src="${weatherIcon}" alt="weather-icon">
-                 
                 <h4>${weatherItem.weather[0].description}</h4>
+            </div>
+            <div class="graph-sec">
+                <img src="graph.png" alt="line-graph" id="line-grap">
             </div>`;
-    } else { // Forecast cards
+    } else { // Forecast cards (Day 2 to 5)
         return `
             <li class="card">
                 <h3>${cityName} (${weatherItem.dt_txt.split(" ")[0]})</h3>
@@ -37,93 +44,86 @@ const createWeatherCard = (cityName, weatherItem, index,aqiText) => {
                 <h4>Wind Speed: ${weatherItem.wind.speed} M/s</h4>
                 <h4>Humidity: ${weatherItem.main.humidity} %</h4>
                 <h4>Air Quality: ${aqiText}</h4>
-                
             </li>`;
     }
 };
 
 // Function to get air quality index
-const getAirQuality = (lat, lon) => {
+const getAirQuality = async (lat, lon) => {
     const AQI_API_URL = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
     
-    return fetch(AQI_API_URL)
-        .then(res => {
-            if (!res.ok) {
-                throw new Error(`HTTP error! Status: ${res.status} - ${res.statusText}`);
-            }
-            return res.json();
-        })
-        .then(data => {
-            const aqi = data.list[0].main.aqi; // Get AQI value
-            const aqiDescription = ["Good", "Fair", "Moderate", "Poor", "Very Poor"];
-            const aqiText = aqiDescription[aqi - 1] || "Unknown";
-            return aqiText;
-           // currentWeatherDiv.insertAdjacentHTML("beforeend", `<h4>Air Quality: ${aqiText}</h4>`);
-        })
-        .catch(error => {
-            console.error("Error fetching air quality data:", error);
-            return "Unavailable";
-        });
+    try {
+        const res = await fetch(AQI_API_URL);
+        if (!res.ok) {
+            throw new Error(`HTTP error! Status: ${res.status} - ${res.statusText}`);
+        }
+        const data = await res.json();
+        const aqi = data.list[0].main.aqi; // Get AQI value (1=Good, 5=Very Poor)
+        const aqiDescription = ["Good", "Fair", "Moderate", "Poor", "Very Poor"];
+        const aqiText = aqiDescription[aqi - 1] || "Unknown";
+        return aqiText;
+    } catch (error) {
+        console.error("Error fetching air quality data:", error);
+        return "Unavailable";
+    }
 };
 
 // Function to get weather details based on city coordinates
-const getWeatherDetails = (cityName, lat, lon) => {
+const getWeatherDetails = async (cityName, lat, lon) => {
     const WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
-    console.log("Fetching weather data from:", WEATHER_API_URL);
     
-    fetch(WEATHER_API_URL)
-        .then(res => {
-            if (!res.ok) {
-                throw new Error(`HTTP error! Status: ${res.status} - ${res.statusText}`);
+    try {
+        const weatherRes = await fetch(WEATHER_API_URL);
+        if (!weatherRes.ok) {
+            throw new Error(`HTTP error! Status: ${weatherRes.status} - ${weatherRes.statusText}`);
+        }
+        const weatherData = await weatherRes.json();
+        
+        // Filter the forecast to get one entry per day, ideally around noon (12:00:00)
+        const uniqueForecastDays = [];
+        const fiveDaysForecast = weatherData.list.filter(forecast => {
+            const forecastDate = new Date(forecast.dt_txt).getDate();
+            if (!uniqueForecastDays.includes(forecastDate) && forecast.dt_txt.includes("12:00:00")) {
+                uniqueForecastDays.push(forecastDate);
+                return true;
             }
-            return res.json();
-        })
-        .then(data => {
-            console.log("Weather Data:", data); // Log the entire data object for debugging
-            
-            const uniqueForecastDays = [];
-            const fiveDaysForecast = data.list.filter(forecast => {
-                const forecastDate = new Date(forecast.dt_txt).getDate();
-                if (!uniqueForecastDays.includes(forecastDate)) {
-                    uniqueForecastDays.push(forecastDate);
-                    return true;
-                }
-                return false;
+            return false;
+        }).slice(0, 5); // Ensure a maximum of 5 days
+
+        // Get Air Quality Index
+        const aqiText = await getAirQuality(lat, lon);
+
+        // Clear previous data
+        cityInput.value = cityName; // Update input with correct city name
+        currentWeatherDiv.innerHTML = "";
+        weatherCardsDiv.innerHTML = "";
+        
+        // Populate current weather and 5-day forecast
+        if (fiveDaysForecast.length > 0) {
+            currentWeatherDiv.innerHTML = createWeatherCard(cityName, fiveDaysForecast[0], aqiText, 0);
+
+            // Populate the rest of the 5-day forecast cards
+            fiveDaysForecast.slice(1).forEach((weatherItem, index) => {
+                weatherCardsDiv.insertAdjacentHTML("beforeend", createWeatherCard(cityName, weatherItem, aqiText, index + 1));
             });
+        }
 
-            // Clear previous data
-            cityInput.value = "";
-            currentWeatherDiv.innerHTML = "";
-            weatherCardsDiv.innerHTML = "";
+        // FIX: Add the class here to apply the spacing fix
+        weatherInputDiv.classList.add('map-active');
+        
+        // Update the map
+        updateMap(lat, lon);
 
-            // Create weather cards
-            return getAirQuality(lat, lon)
-            .then(aqiText => {
-            fiveDaysForecast.forEach((weatherItem, index) => {
-                if (index === 0) {
-                    currentWeatherDiv.insertAdjacentHTML("beforeend", createWeatherCard(cityName, weatherItem, index,aqiText));
-                } else {
-                    weatherCardsDiv.insertAdjacentHTML("beforeend", createWeatherCard(cityName, weatherItem, index,aqiText));
-                }
-            });
-
-            // Log lat and lon before updating the map
-            console.log(`Updating map to: Latitude: ${lat}, Longitude: ${lon}`);
-            updateMap(lat, lon);  // Ensure this is called after the weather cards are generated
-            // Call the air quality function
-           // Fetch AQI data
-        });
-    })
-        .catch(error => {
-            console.error("Error fetching weather forecast:", error);
-            alert("An error occurred while fetching the weather forecast: " + error.message);
-        });
+    } catch (error) {
+        console.error("Error fetching weather data:", error);
+        alert("An error occurred while fetching the weather forecast: " + error.message);
+    }
 };
 
 // Function to get city coordinates
 const getCityCoordinates = () => {
     const cityName = cityInput.value.trim();
-    if (!cityName) return;
+    if (!cityName) return alert("Please enter a city name.");
 
     const GEOCODING_API_URL = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${API_KEY}`;
     
@@ -135,13 +135,13 @@ const getCityCoordinates = () => {
         return res.json();
     })
     .then(data => {
-        console.log("Geocoding Data:", data); // Log the geocoding data
         if (!data || data.length === 0) {
-            throw new Error("No weather data available for this location.");
+            throw new Error(`No coordinates found for "${cityName}".`);
         }
 
-        const { lat, lon } = data[0];
-        getWeatherDetails(cityName, lat, lon); // Call the weather details function
+        const { lat, lon, name } = data[0];
+        // Use the name from the geocoding API for accurate city display
+        getWeatherDetails(name, lat, lon);
     })
     .catch(error => {
         console.error("Error fetching city coordinates:", error);
@@ -160,27 +160,32 @@ const getUserCoordinates = () => {
             fetch(REVERSE_GEOCODING_URL)
                 .then(res => res.json())
                 .then(data => {
+                    if (!data || data.length === 0) {
+                        throw new Error("Could not reverse geocode your location.");
+                    }
                     const { name } = data[0];
                     getWeatherDetails(name, latitude, longitude);
                 })
-                .catch(() => alert("An error occurred while fetching the city!"));
+                .catch(error => alert("An error occurred while fetching the city! " + error.message));
         },
         error => {
             if (error.code === error.PERMISSION_DENIED) {
-                alert("Geolocation request denied. Please allow location access.");
+                alert("Geolocation request denied. Please allow location access to use this feature.");
+            } else {
+                 alert("An error occurred getting your location: " + error.message);
             }
         }
     );
 };
 
-// Event listeners
+// Event listeners for search functionality
 searchButton.addEventListener("click", getCityCoordinates);
 locationButton.addEventListener("click", getUserCoordinates);
 cityInput.addEventListener("keyup", e => e.key === "Enter" && getCityCoordinates());
 
-// Windy API setup
+// Windy API setup (Left as is, assuming a valid API key is used)
 const options = {
-    key: 'H3MzWInDcItupZcD6PvvOdQ92hG6mNKw', // Replace with your Windy API key
+    key: 'H3MzWInDcItupZcD6PvvOdQ92hG6mNKw', // Replace with your actual Windy API key
     lat: 19.0760, // Default latitude for Mumbai
     lon: 72.8777, // Default longitude for Mumbai
     zoom: 10,
@@ -195,22 +200,16 @@ windyInit(options, (api) => {
 
 // Function to update the Windy map with new coordinates
 const updateMap = (lat, lon) => {
-    console.log(`Updating map to: Latitude: ${lat}, Longitude: ${lon}`); // Log coordinates
-    if (windyAPI) {
-        // Check if the windyAPI has a method to set the view
-        if (typeof windyAPI.map.setView === 'function') {
-            windyAPI.map.setView([lat, lon], 12); // Update map view with zoom level
-        } else {
-            console.error("setView method not available on windyAPI.map");
-        }
+    const newZoom = 12; 
+    if (windyAPI && windyAPI.map && typeof windyAPI.map.setView === 'function') {
+        windyAPI.map.setView([lat, lon], newZoom); 
     } else {
-        console.error("Windy API not initialized.");
+        console.error("Windy API map object or setView method not available.");
     }
 };
 
 
-
-// Dark mode functionality
+// Dark mode functionality (left as is)
 const darkModeToggle = document.querySelector('.dark-mode-toggle');
 const body = document.body;
 const icon = darkModeToggle.querySelector('i');
@@ -238,3 +237,82 @@ darkModeToggle.addEventListener('click', function () {
     }
 });
 
+// ===== Favourite Locations Feature Fix and Enhancement =====
+
+// Load favourites from localStorage
+let favourites = JSON.parse(localStorage.getItem('favourites') || "[]");
+
+// Helper: Render favourite city list
+function renderFavourites() {
+    const favListEl = document.getElementById('favouritesList');
+    favListEl.innerHTML = '';
+    
+    if (favourites.length === 0) {
+        const li = document.createElement('li');
+        li.textContent = "No favourites yet. Search a city and click 'Add'!";
+        li.style.cssText = "font-style: italic; background: none; color: #666; justify-content: center;";
+        favListEl.appendChild(li);
+        return;
+    }
+
+    favourites.forEach(city => {
+        const li = document.createElement('li');
+        li.textContent = city;
+        li.classList.add('fav-item');
+
+        // Fix: On click, set the city input value and trigger the search function
+        li.addEventListener('click', () => {
+            cityInput.value = city;
+            getCityCoordinates();
+        });
+
+        // Add remove button
+        const removeBtn = document.createElement('button');
+        removeBtn.textContent = "✕";
+        removeBtn.classList.add('remove-btn');
+        removeBtn.setAttribute('aria-label', `Remove ${city} from favourites`);
+        
+        removeBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent the li click event from triggering
+            removeFavourite(city);
+        });
+
+        li.appendChild(removeBtn);
+        favListEl.appendChild(li);
+    });
+}
+
+// Add to favourites
+function addFavourite(cityName) {
+    if (!cityName) return alert("Please search and select a city name to add to favourites.");
+
+    // Capitalize first letter for consistent display
+    const formattedCityName = cityName.charAt(0).toUpperCase() + cityName.slice(1).toLowerCase();
+
+    if (!favourites.includes(formattedCityName)) {
+        favourites.push(formattedCityName);
+        localStorage.setItem('favourites', JSON.stringify(favourites));
+        renderFavourites();
+        alert(`${formattedCityName} added to favourites!`);
+    } else {
+        alert(`${formattedCityName} is already in favourites.`);
+    }
+}
+
+// Remove a favourite
+function removeFavourite(cityName) {
+    favourites = favourites.filter(c => c !== cityName);
+    localStorage.setItem('favourites', JSON.stringify(favourites));
+    renderFavourites();
+    // Optional: Alert or notification here
+}
+
+// Handle "Add to favourites" button
+addToFavBtn.addEventListener('click', () => {
+    // Fix: Use the value of the main city input field
+    const currentCity = cityInput.value.trim();
+    addFavourite(currentCity);
+});
+
+// Render favourites on load
+document.addEventListener('DOMContentLoaded', renderFavourites);
