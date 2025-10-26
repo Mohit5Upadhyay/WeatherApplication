@@ -428,4 +428,52 @@ height: 50%;
 }
 
 
+/* // Favourite Locations Section Styles */
+#favouritesSection {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
 
+#favouritesList {
+  list-style: none;
+  padding: 0;
+}
+
+.fav-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px 0;
+  background: #f2f2f2;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.fav-item:hover {
+  background: #e0e0e0;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: red;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.fav-btn {
+  margin-top: 10px;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 8px;
+  background-color: #4a90e2;
+  color: white;
+  cursor: pointer;
+}
+
+.fav-btn:hover {
+  background-color: #357ABD;
+}
